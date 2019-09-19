@@ -55,9 +55,7 @@ public class RootBeer {
      */
     public boolean isRootedWithoutBusyBoxCheck() {
 
-        return detectRootManagementApps() || detectPotentiallyDangerousApps() || checkForBinary(BINARY_SU)
-                || checkForDangerousProps() || checkForRWPaths()
-                || detectTestKeys() || checkSuExists() || checkForRootNative() || checkForMagiskBinary();
+        return checkForBinary(BINARY_SU) || checkSuExists();
     }
 
     /**

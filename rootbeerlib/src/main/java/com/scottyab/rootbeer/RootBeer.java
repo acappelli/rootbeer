@@ -60,8 +60,7 @@ public class RootBeer {
     }
 
     public boolean isRootedWithoutPackageCheck() {
-        return checkForBinary(BINARY_SU) || checkForDangerousProps() || checkForRWPaths()
-                || detectTestKeys() || checkSuExists() || checkForRootNative() || checkForMagiskBinary();
+        return checkForBinary(BINARY_SU) || checkForRWPaths() || checkSuExists() || checkForRootNative() || checkForMagiskBinary();
     }
 
     public String getMessages() {

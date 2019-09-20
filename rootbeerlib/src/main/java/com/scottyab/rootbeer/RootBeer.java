@@ -54,8 +54,41 @@ public class RootBeer {
      * @return true, we think there's a good *indication* of root | false good *indication* of no root (could still be cloaked)
      */
     public boolean isRootedWithoutBusyBoxCheck() {
+        return detectRootManagementApps() || detectPotentiallyDangerousApps() || checkForBinary(BINARY_SU)
+                || checkForDangerousProps() || checkForRWPaths()
+                || detectTestKeys() || checkSuExists() || checkForRootNative() || checkForMagiskBinary();
+    }
 
-        return checkForBinary(BINARY_SU) || checkSuExists();
+    public boolean isRootedWithoutPackageCheck() {
+        return checkForBinary(BINARY_SU) || checkForDangerousProps() || checkForRWPaths()
+                || detectTestKeys() || checkSuExists() || checkForRootNative() || checkForMagiskBinary();
+    }
+
+    public String getMessages() {
+        StringBuilder builder = new StringBuilder();
+        if (checkForBinary(BINARY_SU)) {
+            builder.append("| BINARY SU FOUND |");
+        }
+        if (checkForDangerousProps()) {
+            builder.append("| DANGEROUS PROPS |");
+        }
+        if (checkForRWPaths()) {
+            builder.append("| RW PATHS |");
+        }
+        if (detectTestKeys()) {
+            builder.append("| TEST KEYS |");
+        }
+        if (checkSuExists()) {
+            builder.append("| SU EXISTS |");
+        }
+        if (checkForRootNative()) {
+            builder.append("| ROOT NATIVE |");
+        }
+        if (checkForMagiskBinary()) {
+            builder.append("| MAGISK BINARY |");
+        }
+
+        return builder.toString();
     }
 
     /**
